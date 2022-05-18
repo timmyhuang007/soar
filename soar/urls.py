@@ -13,11 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls import include
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+from rest_framework.routers import DefaultRouter
+
+from soar.views import UserViewSet, GroupViewSet, EnvironmentViewSet
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'groups', GroupViewSet)
+router.register(r'environments', EnvironmentViewSet)
 
 urlpatterns = [
-    path('^admin/', admin.site.urls),
-    path('^api-auth/', include('rest_framework.urls')),
+    path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path('rest/', include(router.urls))
 ]

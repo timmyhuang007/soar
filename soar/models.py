@@ -6,3 +6,6 @@ class Environment(models.Model):
     name = models.CharField(verbose_name='环境变量名', max_length=32)
     value = encrypt(models.TextField(verbose_name='环境变量值', max_length=1024))
 
+    def __str__(self):
+        return f'{self.id:04d}|{self.name}'
+
