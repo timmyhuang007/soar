@@ -22,10 +22,10 @@ class Event(models.Model):
     report_time = models.DateTimeField(verbose_name='上报时间', default=datetime.now)
     plan_date = models.DateField(verbose_name='计划日期', default=date.today)
     title = models.CharField(verbose_name='事件标题', max_length=64)
-    url = models.URLField(verbose_name='来源链接', max_length=256, blank=True)
-    screen_shot = models.ImageField(verbose_name='截屏', upload_to='screen_shot/%Y%m%d', max_length=256, blank=True)
-    evidence = models.FileField(verbose_name='证据文件', upload_to='evidence/%Y%m%d', max_length=256, blank=True)
-    extension = models.JSONField(verbose_name='拓展信息', null=True)
+    url = models.URLField(verbose_name='来源链接', max_length=256, blank=True, null=True)
+    screen_shot = models.ImageField(verbose_name='截屏', upload_to='screen_shot/%Y%m%d', max_length=256, blank=True, null=True)
+    evidence = models.FileField(verbose_name='证据文件', upload_to='evidence/%Y%m%d', max_length=256, blank=True, null=True)
+    extension = models.JSONField(verbose_name='拓展信息', blank=True, null=True)
 
     def __str__(self):
         return f'{self.id:04d}|{self.title}'
