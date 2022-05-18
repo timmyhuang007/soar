@@ -28,5 +28,7 @@ router.register(r'environments', EnvironmentViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('rest/', include(router.urls))
+    path('rest/', include([
+        path('soar/', router.urls)
+    ]))
 ]
