@@ -29,6 +29,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('rest/', include([
-        path('soar/', router.urls)
+        path('soar/', include(router.urls)),
     ]))
 ]
