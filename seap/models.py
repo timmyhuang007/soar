@@ -13,10 +13,10 @@ class Event(models.Model):
 
     ip = models.GenericIPAddressField(verbose_name='IP', protocol='both', unpack_ipv4=True, default='0.0.0.0')
     status = models.SmallIntegerField(verbose_name='事件状态', default=STATUS.TODO, choices=[
-        (STATUS.IGNORED, '已忽略'),
-        (STATUS.TODO, '待响应'),
-        (STATUS.DOING, '处理中'),
-        (STATUS.CLOSED, '已关闭'),
+        (STATUS.IGNORED.value, '已忽略'),
+        (STATUS.TODO.value, '待响应'),
+        (STATUS.DOING.value, '处理中'),
+        (STATUS.CLOSED.value, '已关闭'),
     ])
     report_user = models.ForeignKey(User, verbose_name='上报人', on_delete=models.SET_NULL, null=True)
     report_time = models.DateTimeField(verbose_name='上报时间', default=datetime.now)
