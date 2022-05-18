@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from soar.views import UserViewSet, GroupViewSet, EnvironmentViewSet
+from soar.views import EnvironmentViewSet, GroupViewSet, UserViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = DefaultRouter()
