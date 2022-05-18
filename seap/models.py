@@ -1,7 +1,6 @@
 from datetime import datetime, date
 from enum import IntEnum
-from ipaddress import ip_address
-from django.contrib.auth import User
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
@@ -12,7 +11,7 @@ class Event(models.Model):
         DOING = 1
         CLOSED = 2
 
-    ip = models.GenericIPAddressField(verbose_name='IP', protocol='both', unpack_ipv4=True, default=ip_address(0))
+    ip = models.GenericIPAddressField(verbose_name='IP', protocol='both', unpack_ipv4=True, default='0.0.0.0')
     status = models.SmallIntegerField(verbose_name='事件状态', default=STATUS.TODO, choices=[
         (STATUS.IGNORED, '已忽略'),
         (STATUS.TODO, '待响应'),
