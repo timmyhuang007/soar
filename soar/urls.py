@@ -17,7 +17,9 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
+import seap.urls
 from soar.views import EnvironmentViewSet, GroupViewSet, UserViewSet
+
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = DefaultRouter()
@@ -30,5 +32,6 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('rest/', include([
         path('soar/', include(router.urls)),
+        path('seap/', include(seap.urls.router.urls)),
     ]))
 ]

@@ -9,7 +9,7 @@ class EventSerializer(ModelSerializer):
         model = Event
         fields = '__all__'
 
-class CommentSerizlizer(ModelSerializer):
+class CommentSerializer(ModelSerializer):
     event = PrimaryKeyRelatedField(read_only=True)
     class Meta:
         model = Comment
