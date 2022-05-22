@@ -1,10 +1,6 @@
-import os
 import faust
 from attrdict import AttrDict
-from .settings import PROJECT_NAME, MY_FAUST
+from .settings import PROJECT_NAME, MY_FAUST, MY_APPS
 
-# set the default Django settings module for the 'faust' program.
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'soar.settings')
-
-app = faust.App(PROJECT_NAME, autodiscover=True)
+app = faust.App(PROJECT_NAME, autodiscover=MY_APPS)
 app.config_from_object(AttrDict(MY_FAUST))
