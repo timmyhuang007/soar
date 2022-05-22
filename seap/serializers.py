@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, StringRelatedField
+from rest_framework.serializers import *
 from seap.models import Event, Comment
 
 class EventSerializer(ModelSerializer):
