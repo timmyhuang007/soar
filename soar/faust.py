@@ -7,5 +7,4 @@ from .settings import PROJECT_NAME, MY_FAUST
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'soar.settings')
 
 app = faust.App(PROJECT_NAME, autodiscover=True)
-app.config_from_object('django.conf:settings')
 app.config_from_object(AttrDict(MY_FAUST))
