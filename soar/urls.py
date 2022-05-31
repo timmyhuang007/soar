@@ -14,11 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 import seap.urls
-from django.conf import settings
-from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
-from django.views.static import serve
 from rest_framework.routers import DefaultRouter
 
 from soar.views import EnvironmentViewSet, GroupViewSet, UserViewSet
@@ -36,5 +33,4 @@ urlpatterns = [
         path('soar/', include(router.urls)),
         path('seap/', include(seap.urls.router.urls)),
     ])),
-    path(r'static/', serve, {'document_root': settings.STATIC_ROOT}, name='static'),
 ]

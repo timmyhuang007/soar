@@ -1,6 +1,7 @@
 import logging
 from traceback import format_exc
 from typing import AsyncIterable, Optional
+from asgiref.sync import sync_to_async
 from soar import faust_app as app
 from seap.models import Event
 from seap.serializers import EventSerializer
@@ -12,8 +13,8 @@ async def event_serialize(stream:AsyncIterable) -> Optional[Event]:
     async for value in stream:
         try:
             event = EventSerializer(data=value)
-            event.is_valid(raise_exception=True)
-            event.save()
+            await sync_to_async(event.is_valid)(raise_exception=True)
+            await sync_to_async(event.save)()
         except:
             logger.warning(format_exc())
             event = None
