@@ -13,13 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import seap.urls
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from django.views.static import serve
 from rest_framework.routers import DefaultRouter
 
-import seap.urls
 from soar.views import EnvironmentViewSet, GroupViewSet, UserViewSet
-
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = DefaultRouter()
@@ -33,5 +35,6 @@ urlpatterns = [
     path('rest/', include([
         path('soar/', include(router.urls)),
         path('seap/', include(seap.urls.router.urls)),
-    ]))
+    ])),
+    path(r'static/', serve, {'document_root': settings.STATIC_ROOT}, name='static'),
 ]
