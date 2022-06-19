@@ -1,3 +1,9 @@
+# 必须首先初始化Django
+import os
+import django
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'soar.settings')
+django.setup()
+
 from seap.agents import ElasticsearchSink, event_serialize
 
 from .faust import app
