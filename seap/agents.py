@@ -30,7 +30,7 @@ class ElasticsearchSink:
         record['@timestamp'] = datetime.now().astimezone()
         index = json.dumps({
             'index': {
-                '_index': f"{self._topic}-{record['@timestamp'].strftime('%Y.%m.%d')}"
+                '_index': f"{self.topic}-{record['@timestamp'].strftime('%Y.%m.%d')}"
             }
         })
         data = benedict(record).to_json()
