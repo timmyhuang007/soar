@@ -1,5 +1,5 @@
 import faust
-from attrdict import AttrDict
+from elasticsearch_dsl.utils import AttrDict
 from .settings import PROJECT_NAME, MY_FAUST
 
 app = faust.App(PROJECT_NAME)
