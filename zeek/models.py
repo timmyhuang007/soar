@@ -1,3 +1,4 @@
+from datetime import datetime
 from enum import Enum, IntEnum
 from django.db import models as M
 
@@ -31,12 +32,13 @@ class Intelligence(M.Model):
     class INDICATOR_STATUS(IntEnum):
         UNKNOWN = 0
         ACTIVE = 1
+        INACTIVE = 2
         DELETED = 8
     
     indicator_type = M.CharField(verbose_name='情报类型', choices=INDICATOR_CHOICES.items())
-    created = M.DateTimeField(verbose_name='录入时间', blank=True, null=True)
-    updated = M.DateTimeField(verbose='更新时间', blank=True, null=True)
-    last_active = M.DateTimeField(verbose='最后活跃时间', blank=True, null=True)
+    created = M.DateTimeField(verbose_name='录入时间', auto_now_add=True)
+    updated = M.DateTimeField(verbose='更新时间', auto_now=True)
+    last_active = M.DateTimeField(verbose='最后活跃时间', blank=True, null=True, default=datetime.now)
     status = M.SmallIntegerField(verbose_name='情报状态', blank=True, null=True, default=INDICATOR_STATUS.UNKNOWN.value)
     source = M.CharField(verbose_name='来源', max_length=64, blank=True, null=True)
     desc = M.TextField(verbose_name='描述', blank=True, null=True)
@@ -55,4 +57,4 @@ class IntelDomain(Intelligence):
     domain = M.CharField(max_length=256,
         verbose_name=Intelligence.INDICATOR_CHOICES[Intelligence.INDICATOR_TYPE.DOMAIN.value]
     )
-    resolve_ip = M.GenericIPAddressField(verbose_name='解析IP')
+    ips = M.JSONField(verbose_name='解析IP', default=list)
